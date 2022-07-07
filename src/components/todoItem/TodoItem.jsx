@@ -4,7 +4,7 @@ export default function TodoItem({ title, description }) {
       <h2 className="text-2xl font-bold text-sky-500">{title}</h2>
       <p className="mb-8 text-white">{description}</p>
       <div className="mt-auto flex gap-6">
-        <button className="basis-full rounded-md bg-sky-500 text-base font-medium uppercase text-white shadow-lg">
+        <button className="basis-full rounded-md bg-sky-500 py-1 text-base font-medium uppercase text-white shadow-lg">
           edit
         </button>
         <button className="basis-full rounded-md bg-sky-500 text-base font-medium uppercase text-white shadow-lg">
