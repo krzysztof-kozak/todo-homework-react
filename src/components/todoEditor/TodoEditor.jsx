@@ -1,43 +1,16 @@
-import { useState } from 'react';
-
-export default function TodoEditor({ onTodoAdd }) {
-  const defaultState = { title: '', description: '' };
-  const [todo, setTodo] = useState(defaultState);
-
-  function handleChange(e) {
-    const key = e.target.name;
-    const value = e.target.value;
-
-    const nextTodo = { ...todo, [key]: value };
-    setTodo(nextTodo);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    if (!todo.title || !todo.description) {
-      return;
-    }
-
-    setTodo(defaultState);
-
-    const nextTodo = { ...todo, id: crypto.randomUUID() };
-    onTodoAdd(nextTodo);
-  }
-
-  const { title, description } = todo;
-
-  const disabled = title.length < 1 || description.length < 1;
+export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
+  const disabled = todo.title.length < 1 || todo.description.length < 1;
+  const editing = todo.editing;
   return (
-    <form onSubmit={handleSubmit} className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5">
+    <form onSubmit={onTodoAdd} className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5">
       <div className="flex basis-full flex-wrap gap-1">
         <label htmlFor="title" className="basis-full font-semibold text-sky-400">
           title
         </label>
         <input
           placeholder="Interview"
-          onChange={handleChange}
-          value={title}
+          onChange={onTodoChange}
+          value={todo.title}
           type="text"
           name="title"
           id="title"
@@ -51,8 +24,8 @@ export default function TodoEditor({ onTodoAdd }) {
         </label>
         <textarea
           placeholder="Prepare for the job interview tomorrow."
-          onChange={handleChange}
-          value={description}
+          onChange={onTodoChange}
+          value={todo.description}
           name="description"
           id="description"
           cols="30"
@@ -66,7 +39,7 @@ export default function TodoEditor({ onTodoAdd }) {
         disabled={disabled}
         className="basis-full rounded bg-emerald-500 py-2 font-semibold uppercase text-slate-100 shadow-sm disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
       >
-        Create
+        {editing ? 'save' : 'create'}
       </button>
     </form>
   );
