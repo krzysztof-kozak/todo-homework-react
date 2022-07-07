@@ -35,12 +35,13 @@ export default function TodoEditor({ onTodoAdd }) {
           title
         </label>
         <input
+          placeholder="Interview"
           onChange={handleChange}
           value={title}
           type="text"
           name="title"
           id="title"
-          className="basis-full rounded px-2 py-2 shadow-md outline-offset-2 outline-emerald-500"
+          className="basis-full rounded bg-slate-700 px-2 py-2 text-slate-300 shadow-md outline-offset-2 outline-emerald-500 placeholder:text-slate-500"
         />
       </div>
 
@@ -49,13 +50,14 @@ export default function TodoEditor({ onTodoAdd }) {
           description
         </label>
         <textarea
+          placeholder="Prepare for the job interview tomorrow."
           onChange={handleChange}
           value={description}
           name="description"
           id="description"
           cols="30"
           rows="5"
-          className="basis-full rounded px-2 py-2 shadow-md outline-offset-2 outline-emerald-500"
+          className="basis-full rounded bg-slate-700 px-2 py-2 text-slate-300 shadow-md outline-offset-2 outline-emerald-500 placeholder:text-slate-500"
         ></textarea>
 
         <div className="flex basis-full flex-wrap gap-1"></div>
