@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function TodoEditor() {
+export default function TodoEditor({ onTodoAdd }) {
   const defaultState = { title: '', description: '' };
   const [todo, setTodo] = useState(defaultState);
 
@@ -12,10 +12,21 @@ export default function TodoEditor() {
     setTodo(nextTodo);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    setTodo(defaultState);
+
+    const nextTodo = { ...todo, id: crypto.randomUUID() };
+    onTodoAdd(nextTodo);
+  }
+
   const { title, description } = todo;
 
   return (
-    <div className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5">
+    <form
+      onSubmit={handleSubmit}
+      className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5"
+    >
       <div className="flex basis-full flex-wrap gap-1">
         <label
           htmlFor="title"
@@ -55,6 +66,6 @@ export default function TodoEditor() {
       <button className="basis-full rounded bg-emerald-500 font-semibold uppercase text-slate-100 shadow-sm">
         Create
       </button>
-    </div>
+    </form>
   );
 }
