@@ -7,17 +7,30 @@ export default function App() {
       id: crypto.randomUUID(),
       title: 'Trash',
       description: 'I need to take out the trash today',
+      completed: false,
     },
     {
       id: crypto.randomUUID(),
       title: 'Vet',
       description: 'I need to take my dog to the vet tomorrow',
+      completed: false,
     },
   ];
   const [todos, setTodos] = useState(defaultTodos);
 
   function handleTodoAdd(nextTodo) {
     setTodos([...todos, nextTodo]);
+  }
+
+  function handleTodoCompleteToggle(id) {
+    const nextTodos = todos.map((todo) => {
+      if (todo.id === id) {
+        return { ...todo, completed: !todo.completed };
+      }
+      return todo;
+    });
+
+    setTodos(nextTodos);
   }
 
   return (
@@ -28,7 +41,7 @@ export default function App() {
 
         <TodoLayout>
           {todos.map((props) => {
-            return <TodoItem key={props.id} {...props} />;
+            return <TodoItem key={props.id} onTodoCompleteToggle={handleTodoCompleteToggle} {...props} />;
           })}
         </TodoLayout>
       </div>
