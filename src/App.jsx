@@ -1,13 +1,10 @@
-import { TodoEditor } from './components';
+import { Header, TodoEditor } from './components';
 
 export default function App() {
   return (
     <div className="bg-slate-800">
       <div className="container mx-auto p-5 text-lg">
-        <h1 className="text-center text-5xl font-bold text-sky-500 underline decoration-emerald-500">
-          Todo app
-        </h1>
-
+        <Header title="Todo App" />
         <TodoEditor />
 
         <div className="mt-16 grid grid-cols-ram gap-8">
