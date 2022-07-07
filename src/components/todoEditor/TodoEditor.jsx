@@ -61,7 +61,7 @@ export default function TodoEditor({ onTodoAdd }) {
         <div className="flex basis-full flex-wrap gap-1"></div>
       </div>
       <button
-        disabled={false}
+        disabled={disabled}
         className="basis-full rounded bg-emerald-500 py-2 font-semibold uppercase text-slate-100 shadow-sm disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
       >
         Create
