@@ -1,4 +1,19 @@
+import { useState } from 'react';
+
 export default function TodoEditor() {
+  const defaultState = { title: '', description: '' };
+  const [todo, setTodo] = useState(defaultState);
+
+  function handleChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    const nextTodo = { ...todo, [key]: value };
+    setTodo(nextTodo);
+  }
+
+  const { title, description } = todo;
+
   return (
     <div className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5">
       <div className="flex basis-full flex-wrap gap-1">
@@ -9,6 +24,8 @@ export default function TodoEditor() {
           title
         </label>
         <input
+          onChange={handleChange}
+          value={title}
           type="text"
           name="title"
           id="title"
@@ -24,6 +41,8 @@ export default function TodoEditor() {
           description
         </label>
         <textarea
+          onChange={handleChange}
+          value={description}
           name="description"
           id="description"
           cols="30"
