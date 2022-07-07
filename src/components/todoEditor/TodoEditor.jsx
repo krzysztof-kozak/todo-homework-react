@@ -14,6 +14,11 @@ export default function TodoEditor({ onTodoAdd }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!todo.title || !todo.description) {
+      return;
+    }
+
     setTodo(defaultState);
 
     const nextTodo = { ...todo, id: crypto.randomUUID() };
@@ -22,6 +27,7 @@ export default function TodoEditor({ onTodoAdd }) {
 
   const { title, description } = todo;
 
+  const disabled = title.length < 1 || description.length < 1;
   return (
     <form
       onSubmit={handleSubmit}
@@ -63,7 +69,10 @@ export default function TodoEditor({ onTodoAdd }) {
 
         <div className="flex basis-full flex-wrap gap-1"></div>
       </div>
-      <button className="basis-full rounded bg-emerald-500 font-semibold uppercase text-slate-100 shadow-sm">
+      <button
+        disabled={false}
+        className="basis-full rounded bg-emerald-500 font-semibold uppercase text-slate-100 shadow-sm disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
+      >
         Create
       </button>
     </form>
