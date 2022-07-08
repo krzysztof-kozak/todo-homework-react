@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       gridTemplateColumns: {
-        ram: 'repeat(auto-fill, minmax(250px, 1fr))',
+        ram: 'repeat(auto-fit, minmax(0, 350px));',
       },
 
       animation: {
