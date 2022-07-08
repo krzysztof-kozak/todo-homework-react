@@ -17,6 +17,13 @@ export default function App() {
       completed: false,
       editing: false,
     },
+    {
+      id: crypto.randomUUID(),
+      title: 'Exam',
+      description: 'I need to study for the history exam tomorrow',
+      completed: false,
+      editing: false,
+    },
   ];
   const defaultTodo = { title: '', description: '' };
 
@@ -95,13 +102,34 @@ export default function App() {
         <TodoEditor todo={todo} onTodoAdd={handleTodoAdd} onTodoChange={handleTodoChange} />
 
         <TodoLayout>
-          {todos.map((props) => {
+          {todos.map((todo, index) => {
+            /*
+            this feels really bad to write,  but it seems like something is broken
+            with tailwindcss & react when it comes to animation delay...
+
+            for example, the following doesn't work:
+            let animationDelay = `[animation-delay${index * 500}ms]`
+            */
+            let animationDelay = '';
+            if (index === 0) {
+              animationDelay = '[animation-delay:0ms]';
+            }
+
+            if (index === 1) {
+              animationDelay = '[animation-delay:200ms]';
+            }
+
+            if (index === 2) {
+              animationDelay = '[animation-delay:300ms]';
+            }
+
             return (
               <TodoItem
-                key={props.id}
+                key={todo.id}
                 onTodoCompleteToggle={handleTodoCompleteToggle}
                 onTodoSelect={handleTodoSelect}
-                {...props}
+                animationDelay={animationDelay}
+                {...todo}
               />
             );
           })}

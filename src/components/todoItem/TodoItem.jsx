@@ -1,9 +1,18 @@
-export default function TodoItem({ title, description, id, completed, onTodoCompleteToggle, onTodoSelect, editing }) {
+export default function TodoItem({
+  title,
+  description,
+  id,
+  completed,
+  onTodoCompleteToggle,
+  onTodoSelect,
+  editing,
+  animationDelay,
+}) {
   const borderColor = completed ? 'border-emerald-600' : 'border-sky-600';
   const editDisabled = completed;
   const completeDisabled = editing;
 
-  let badge;
+  let badge = '';
   if (editDisabled) {
     badge = 'after:content-["completed"] after:bg-emerald-500/80';
   }
@@ -13,10 +22,10 @@ export default function TodoItem({ title, description, id, completed, onTodoComp
 
   return (
     <div
-      className={`relative flex flex-col overflow-clip rounded-md border-2 after:absolute after:left-[40%] after:top-[10%]
+      className={`relative flex translate-y-[-100px] animate-slide-from-top flex-col overflow-clip rounded-md border-2 opacity-0 after:absolute after:left-[40%] after:top-[10%]
       after:${
         completed || editing ? 'grid' : 'hidden'
-      } after:w-full after:rotate-45 after:place-items-center  after:py-1 after:text-sm ${badge} ${borderColor} p-3 shadow-xl  hover:bg-slate-700
+      } after:w-full after:rotate-45 after:place-items-center  after:py-1 after:text-sm ${badge} ${borderColor} p-3 shadow-xl  hover:bg-slate-700 ${animationDelay}
       
       `}
     >
