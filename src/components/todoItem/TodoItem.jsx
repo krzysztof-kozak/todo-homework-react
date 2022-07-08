@@ -20,12 +20,16 @@ export default function TodoItem({
     badge = 'after:content-["editing"] after:bg-sky-500/80';
   }
 
+  let badgeContent = '';
+  if (editing || completed) {
+    badgeContent = 'after:grid';
+  } else {
+    badgeContent = 'after:hidden';
+  }
+
   return (
     <div
-      className={`relative flex translate-y-[-100px] animate-slide-from-top flex-col overflow-clip rounded-md border-2 opacity-0 after:absolute after:left-[40%] after:top-[10%]
-      after:${
-        completed || editing ? 'grid' : 'hidden'
-      } after:w-full after:rotate-45 after:place-items-center after:py-1  after:text-sm after:font-bold ${badge} ${borderColor} p-3 shadow-xl  hover:bg-slate-700 ${animationDelay}
+      className={`relative flex translate-y-[-100px] animate-slide-from-top flex-col overflow-clip rounded-md border-2 opacity-0 after:absolute after:left-[40%] after:top-[10%] after:w-full after:rotate-45 after:place-items-center after:py-1 after:text-sm after:font-bold ${badge} ${badgeContent} ${borderColor} p-3 shadow-xl  hover:bg-slate-700 ${animationDelay}
       
       `}
     >
