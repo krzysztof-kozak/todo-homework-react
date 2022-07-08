@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/krzysztof-kozak/todo-homework-react/static/css/main.1f6a1b7c.css",
+    "main.js": "/krzysztof-kozak/todo-homework-react/static/js/main.216d1a22.js",
+    "index.html": "/krzysztof-kozak/todo-homework-react/index.html",
+    "main.1f6a1b7c.css.map": "/krzysztof-kozak/todo-homework-react/static/css/main.1f6a1b7c.css.map",
+    "main.216d1a22.js.map": "/krzysztof-kozak/todo-homework-react/static/js/main.216d1a22.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1f6a1b7c.css",
+    "static/js/main.216d1a22.js"
+  ]
+}
