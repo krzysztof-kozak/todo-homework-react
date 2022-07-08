@@ -7,7 +7,7 @@ export default function App() {
       id: crypto.randomUUID(),
       title: 'Trash',
       description: 'I need to take out the trash today',
-      completed: false,
+      completed: true,
       editing: false,
     },
     {
@@ -21,7 +21,7 @@ export default function App() {
       id: crypto.randomUUID(),
       title: 'Exam',
       description: 'I need to study for the history exam tomorrow',
-      completed: false,
+      completed: true,
       editing: false,
     },
   ];
