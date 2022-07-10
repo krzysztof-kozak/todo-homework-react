@@ -111,7 +111,7 @@ export default function App() {
             with tailwindcss & react when it comes to animation delay...
 
             for example, the following doesn't work:
-            let animationDelay = `[animation-delay${index * 500}ms]`
+            let animationDelay = `[animation-delay:${index * 500}ms]`
             */
             let animationDelay = '';
             if (index === 0) {
