@@ -1,9 +1,18 @@
 import { useState, useEffect } from 'react';
-import { Header, Loader, TodoEditor, TodoItem, TodoLayout } from './components';
+import {
+  Header,
+  Loader,
+  TodoEditor,
+  TodoItem,
+  TodoLayout,
+  Error,
+  Success,
+} from './components';
 import { useJsonServer } from './hooks';
 
 export default function App() {
-  const [todos, error, loading, post, put] = useJsonServer(URL);
+  const [todos, error, toast, setToast, loading, post, put] =
+    useJsonServer(URL);
 
   const defaultTodo = { title: '', description: '' };
   const [todo, setTodo] = useState(defaultTodo);
@@ -16,6 +25,14 @@ export default function App() {
       setTodo(currentlyEditedTodo || defaultTodo);
     }
   }, [todos]);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setToast(false);
+    }, 2500);
+
+    return () => clearTimeout(timeoutId);
+  }, [toast]);
 
   function handleTodoAdd(e) {
     e.preventDefault();
@@ -61,6 +78,8 @@ export default function App() {
   return (
     <div className="bg-slate-800">
       <div className="container mx-auto min-h-screen p-5 text-lg">
+        {error && <Error message={error} />}
+        {toast && <Success />}
         <Header title="Todo App" />
         <TodoEditor
           todo={todo}
