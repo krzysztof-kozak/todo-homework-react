@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-export default function useJsonServer(url, params) {
+export default function useJsonServer(url, config) {
   const [todos2, settodos2] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  url = params ? `${url}?id=${params.id}` : url;
-
   useEffect(() => {
     let ignore = false;
     setLoading(true);
-    fetch(url)
-      .then((response) => response.json())
+    axios
+      .get(url)
       .then((json) => {
         if (!ignore) {
-          settodos2(json);
+          settodos2(json.data);
         }
       })
       .catch((error) => setError(error.message))
