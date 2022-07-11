@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 
-export default function useJsonServer(url) {
+export default function useJsonServer(url, params) {
   const [todos2, settodos2] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  url = params ? `${url}?id=${params.id}` : url;
 
   useEffect(() => {
     let ignore = false;
