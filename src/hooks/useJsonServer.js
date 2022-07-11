@@ -12,7 +12,7 @@ export default function useJsonServer() {
   function post(payload) {
     axios
       // change url to '/badRequest' to test error toast
-      .post('/badRequest', payload)
+      .post('/', payload)
       .then((json) => {
         setTodos([...todos, json.data]);
         setToast(true);
