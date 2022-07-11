@@ -1,21 +1,21 @@
 {
   "todos": [
     {
-      "id": 0,
+      "id": 1,
       "title": "Trash",
       "description": "I need to take out the trash today",
-      "completed": true,
-      "editing": false
-    },
-    {
-      "id": 1,
-      "title": "Vet",
-      "description": "I need to take my dog to the vet tomorrow.",
       "completed": false,
       "editing": false
     },
     {
       "id": 2,
+      "title": "Vet",
+      "description": "I need to take my dog to the vet tomorrow.",
+      "completed": true,
+      "editing": false
+    },
+    {
+      "id": 3,
       "title": "Exam",
       "description": "I need to study for the history exam tomorrow",
       "completed": true,
