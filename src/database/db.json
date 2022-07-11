@@ -11,7 +11,7 @@
       "id": 1,
       "title": "Vet",
       "description": "I need to take my dog to the vet tomorrow.",
-      "completed": true,
+      "completed": false,
       "editing": false
     },
     {
@@ -20,13 +20,6 @@
       "description": "I need to study for the history exam tomorrow",
       "completed": true,
       "editing": false
-    },
-    {
-      "title": "New task",
-      "description": "Hello, this is me!",
-      "id": 3,
-      "completed": false,
-      "editing": true
     }
   ]
 }
