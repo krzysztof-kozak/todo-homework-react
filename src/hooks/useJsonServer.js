@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
-export default function useJsonServer(url, config) {
+const URL = 'http://localhost:3001/todos';
+
+export default function useJsonServer() {
   const [todos2, settodos2] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  function addTodo(payload) {
+    axios.post(URL, payload).then((json) => settodos2([...todos2, json.data]));
+  }
 
   useEffect(() => {
     let ignore = false;
     setLoading(true);
     axios
-      .get(url)
+      .get(URL)
       .then((json) => {
         if (!ignore) {
           settodos2(json.data);
@@ -21,6 +27,7 @@ export default function useJsonServer(url, config) {
     return () => {
       ignore = true;
     };
-  }, [url]);
-  return [todos2, error, loading];
+  }, []);
+
+  return [todos2, error, loading, addTodo];
 }

@@ -3,8 +3,7 @@ import { Header, TodoEditor, TodoItem, TodoLayout } from './components';
 import { useJsonServer } from './hooks';
 
 export default function App() {
-  const URL = 'http://localhost:3001/todos';
-  const [todos2, error, loading] = useJsonServer(URL);
+  const [todos2, error, loading, addTodo] = useJsonServer(URL);
 
   const defaultTodos = [
     {
@@ -34,6 +33,11 @@ export default function App() {
   const [todos, setTodos] = useState(defaultTodos);
   const [todo, setTodo] = useState(defaultTodo);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
+
+  function handleTodoAdd2(e) {
+    e.preventDefault();
+    addTodo(todo);
+  }
 
   function handleTodoAdd(e) {
     e.preventDefault();
@@ -104,7 +108,7 @@ export default function App() {
         <Header title="Todo App" />
         <TodoEditor
           todo={todo}
-          onTodoAdd={handleTodoAdd}
+          onTodoAdd={handleTodoAdd2}
           onTodoChange={handleTodoChange}
         />
 

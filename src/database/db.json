@@ -20,6 +20,28 @@
       "description": "I need to study for the history exam tomorrow",
       "completed": true,
       "editing": false
+    },
+    {
+      "id": 3
+    },
+    {
+      "title": "New Post",
+      "description": "Just added via /post",
+      "completed": true,
+      "editing": false,
+      "id": 4
+    },
+    {
+      "title": "New Post",
+      "description": "Just added via /post",
+      "completed": true,
+      "editing": false,
+      "id": 5
+    },
+    {
+      "title": "JSON SERVER",
+      "description": "learn how to use it...",
+      "id": 6
     }
   ]
 }
