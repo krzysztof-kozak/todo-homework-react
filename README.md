@@ -1,6 +1,16 @@
 # Todo App Homework - JSON SERVER
 
-![preview gif](/public/demo.gif)
+`Handle valid request`
+![preview gif](/public/demo_good_post.gif)
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+`Handle bad request`
+![preview gif](/public/demo_bad_post.gif)
 
 ---
 
