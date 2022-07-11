@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import { Header, TodoEditor, TodoItem, TodoLayout } from './components';
+import { useJsonServer } from './hooks';
 
 export default function App() {
+  const URL = 'http://localhost:3001/todos';
+  const [todos2, error, loading] = useJsonServer(URL);
+
   const defaultTodos = [
     {
       id: crypto.randomUUID(),
@@ -105,37 +109,38 @@ export default function App() {
         />
 
         <TodoLayout>
-          {todos.map((todo, index) => {
-            /*
+          {todos2 &&
+            todos2.map((todo, index) => {
+              /*
             this feels really bad to write,  but it seems like something is broken
             with tailwindcss & react when it comes to animation delay...
 
             for example, the following doesn't work:
             let animationDelay = `[animation-delay:${index * 500}ms]`
             */
-            let animationDelay = '';
-            if (index === 0) {
-              animationDelay = '[animation-delay:0ms]';
-            }
+              let animationDelay = '';
+              if (index === 0) {
+                animationDelay = '[animation-delay:0ms]';
+              }
 
-            if (index === 1) {
-              animationDelay = '[animation-delay:200ms]';
-            }
+              if (index === 1) {
+                animationDelay = '[animation-delay:200ms]';
+              }
 
-            if (index === 2) {
-              animationDelay = '[animation-delay:300ms]';
-            }
+              if (index === 2) {
+                animationDelay = '[animation-delay:300ms]';
+              }
 
-            return (
-              <TodoItem
-                key={todo.id}
-                onTodoCompleteToggle={handleTodoCompleteToggle}
-                onTodoSelect={handleTodoSelect}
-                animationDelay={animationDelay}
-                {...todo}
-              />
-            );
-          })}
+              return (
+                <TodoItem
+                  key={todo.id}
+                  onTodoCompleteToggle={handleTodoCompleteToggle}
+                  onTodoSelect={handleTodoSelect}
+                  animationDelay={animationDelay}
+                  {...todo}
+                />
+              );
+            })}
         </TodoLayout>
       </div>
     </div>
