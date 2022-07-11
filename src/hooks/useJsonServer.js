@@ -34,11 +34,11 @@ export default function useJsonServer() {
       .get()
       .then((json) => {
         if (!ignore) {
-          setTodos(json.data);
+          setTimeout(() => setTodos(json.data), 500);
         }
       })
       .catch((error) => setError(error.message))
-      .finally(() => setLoading(false));
+      .finally(() => setTimeout(() => setLoading(false), 500));
     return () => {
       ignore = true;
     };
