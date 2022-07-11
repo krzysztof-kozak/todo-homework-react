@@ -98,7 +98,6 @@ export default function App() {
                   onTodoCompleteToggle={handleTodoCompleteToggle}
                   onEditToggle={handleTodoEditingToggle}
                   animationDelay={animationDelay}
-                  loading={loading}
                   {...todo}
                 />
               );

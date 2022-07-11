@@ -21,7 +21,7 @@ export default function useJsonServer() {
         if (todo.id === id) {
           return json.data;
         }
-        return todo;
+        return { ...todo, editing: false };
       });
       setTodos(nextTodos);
     });

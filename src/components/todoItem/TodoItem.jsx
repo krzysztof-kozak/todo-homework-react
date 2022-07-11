@@ -7,7 +7,6 @@ export default function TodoItem({
   onEditToggle,
   editing,
   animationDelay,
-  loading,
 }) {
   const borderColor = completed ? 'border-emerald-600' : 'border-sky-600';
   const editDisabled = completed;
