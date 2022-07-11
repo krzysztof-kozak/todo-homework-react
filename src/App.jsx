@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Header, TodoEditor, TodoItem, TodoLayout } from './components';
+import { Header, Loader, TodoEditor, TodoItem, TodoLayout } from './components';
 import { useJsonServer } from './hooks';
 
 export default function App() {
@@ -69,6 +69,7 @@ export default function App() {
         />
 
         <TodoLayout>
+          {loading && <Loader />}
           {todos &&
             todos.map((todo, index) => {
               /*
@@ -97,6 +98,7 @@ export default function App() {
                   onTodoCompleteToggle={handleTodoCompleteToggle}
                   onEditToggle={handleTodoEditingToggle}
                   animationDelay={animationDelay}
+                  loading={loading}
                   {...todo}
                 />
               );

@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 axios.defaults.baseURL = 'http://localhost:3001/todos';
-const defaultTodo = { title: '', description: '' };
 
 export default function useJsonServer() {
   const [todos, setTodos] = useState(null);
