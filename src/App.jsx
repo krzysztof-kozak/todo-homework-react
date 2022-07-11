@@ -1,63 +1,40 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Header, TodoEditor, TodoItem, TodoLayout } from './components';
 import { useJsonServer } from './hooks';
 
 export default function App() {
-  const [todos2, error, loading, addTodo] = useJsonServer(URL);
+  const [todos, error, loading, post, put] = useJsonServer(URL);
 
-  const defaultTodos = [
-    {
-      id: crypto.randomUUID(),
-      title: 'Trash',
-      description: 'I need to take out the trash today',
-      completed: true,
-      editing: false,
-    },
-    {
-      id: crypto.randomUUID(),
-      title: 'Vet',
-      description: 'I need to take my dog to the vet tomorrow',
-      completed: false,
-      editing: false,
-    },
-    {
-      id: crypto.randomUUID(),
-      title: 'Exam',
-      description: 'I need to study for the history exam tomorrow',
-      completed: true,
-      editing: false,
-    },
-  ];
   const defaultTodo = { title: '', description: '' };
-
-  const [todos, setTodos] = useState(defaultTodos);
   const [todo, setTodo] = useState(defaultTodo);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
 
-  function handleTodoAdd2(e) {
-    e.preventDefault();
-    addTodo(todo);
-  }
+  useEffect(() => {
+    if (todos) {
+      const currentlyEditedTodo = todos.find((todo) => todo.editing);
+      setSelectedTodoId(currentlyEditedTodo?.id || null);
+      setTodo(currentlyEditedTodo || defaultTodo);
+    }
+  }, [todos]);
 
   function handleTodoAdd(e) {
     e.preventDefault();
+    setTodo(defaultTodo);
 
     if (!selectedTodoId) {
-      setTodos([...todos, { ...todo, id: crypto.randomUUID() }]);
-      setTodo(defaultTodo);
+      post(todo);
       return;
     }
 
-    const nextTodos = todos.map((previusTodo) => {
-      if (previusTodo.id === selectedTodoId) {
-        return { ...todo, id: selectedTodoId, editing: false };
-      }
-      return previusTodo;
-    });
+    put({ ...todo, editing: false });
+  }
 
-    setTodos(nextTodos);
-    setTodo(defaultTodo);
-    setSelectedTodoId(null);
+  function handleTodoEditingToggle(id) {
+    const nextTodo = { ...todos.find((t) => t.id === id), editing: true };
+    if (nextTodo.completed) {
+      return;
+    }
+    put(nextTodo);
   }
 
   function handleTodoChange(e) {
@@ -68,38 +45,17 @@ export default function App() {
     setTodo(nextTodo);
   }
 
-  function handleTodoSelect(id) {
-    const nextTodo = todos.find((t) => t.id === id);
-    if (nextTodo.completed) {
-      return;
-    }
-
-    const nextTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, editing: true };
-      }
-      return todo;
-    });
-
-    setTodo({ ...nextTodo, editing: true });
-    setTodos(nextTodos);
-    setSelectedTodoId(id);
-  }
-
   function handleTodoCompleteToggle(id) {
-    const selectedTodo = todos.find((todo) => todo.id === id);
-    if (selectedTodo.editing) {
+    const nextTodo = {
+      ...todos.find((t) => t.id === id),
+    };
+    nextTodo.completed = !nextTodo.completed;
+
+    if (nextTodo.editing) {
       return;
     }
 
-    const nextTodos = todos.map((todo) => {
-      if (todo.id === id) {
-        return { ...todo, completed: !todo.completed };
-      }
-      return todo;
-    });
-
-    setTodos(nextTodos);
+    put(nextTodo);
   }
 
   return (
@@ -108,13 +64,13 @@ export default function App() {
         <Header title="Todo App" />
         <TodoEditor
           todo={todo}
-          onTodoAdd={handleTodoAdd2}
+          onTodoAdd={handleTodoAdd}
           onTodoChange={handleTodoChange}
         />
 
         <TodoLayout>
-          {todos2 &&
-            todos2.map((todo, index) => {
+          {todos &&
+            todos.map((todo, index) => {
               /*
             this feels really bad to write,  but it seems like something is broken
             with tailwindcss & react when it comes to animation delay...
@@ -139,7 +95,7 @@ export default function App() {
                 <TodoItem
                   key={todo.id}
                   onTodoCompleteToggle={handleTodoCompleteToggle}
-                  onTodoSelect={handleTodoSelect}
+                  onEditToggle={handleTodoEditingToggle}
                   animationDelay={animationDelay}
                   {...todo}
                 />

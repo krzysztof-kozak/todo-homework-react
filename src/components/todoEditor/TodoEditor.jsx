@@ -14,7 +14,7 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
           title
         </label>
         <input
-          placeholder="Interview"
+          placeholder="Add some title..."
           onChange={onTodoChange}
           value={todo.title}
           type="text"
@@ -32,7 +32,7 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
           description
         </label>
         <textarea
-          placeholder="Prepare for the job interview tomorrow."
+          placeholder="Add some description..."
           onChange={onTodoChange}
           value={todo.description}
           name="description"

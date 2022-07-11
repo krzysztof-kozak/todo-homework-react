@@ -4,7 +4,7 @@ export default function TodoItem({
   id,
   completed,
   onTodoCompleteToggle,
-  onTodoSelect,
+  onEditToggle,
   editing,
   animationDelay,
 }) {
@@ -38,7 +38,7 @@ export default function TodoItem({
       <div className="mt-auto flex w-full gap-6">
         <button
           disabled={editDisabled}
-          onClick={onTodoSelect.bind(null, id)}
+          onClick={onEditToggle.bind(null, id)}
           className="basis-full rounded-md bg-sky-500 px-1 py-1 text-base font-medium uppercase text-white shadow-lg hover:bg-sky-600 active:bg-sky-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
           edit
