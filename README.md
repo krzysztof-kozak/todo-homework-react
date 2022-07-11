@@ -1,4 +1,4 @@
-# Todo App Homework - react
+# Todo App Homework - JSON SERVER
 
 ![preview gif](/public/demo.gif)
 
@@ -15,21 +15,23 @@
 2. Go to the project's folder.
 3. Install dependencies.
 4. Start local server.
+5. Start local database.
 
 ```sh
 git clone git@github.com:krzysztof-kozak/todo-homework-react.git
 cd todo-homework-react
 npm install
 npm run start
-
+npm run start-db
 ```
+
+### local database: json-server
+
+`npm run start-db` starts a local database.
+Make sure to start the db before doing any requests
 
 ### Development mode
 
 `npm run start` runs the app in the **development mode**.
 
 Open [http://localhost:3000/todo-homework-react](http://localhost:3000/todo-homework-react) to view it in the browser
-
-## Live preview
-
-You can preview the deployed build at: [krzysztof-kozak.github.io/todo-homework-react](https://krzysztof-kozak.github.io/todo-homework-react)
