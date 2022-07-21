@@ -26,7 +26,7 @@ export function todosReducer(todos, action) {
         if (todo.id === action.id) {
           return { ...todo, editing: true };
         }
-        return todo;
+        return { ...todo, editing: false };
       });
 
       return nextTodos;
