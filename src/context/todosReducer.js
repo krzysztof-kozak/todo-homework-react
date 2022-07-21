@@ -16,8 +16,20 @@ export function todosReducer(todos, action) {
       return nextTodos;
     }
 
-    case 'todo_edited': {
-      return {};
+    case 'todo_selected': {
+      const nextTodo = todos.find((t) => t.id === action.id);
+      if (nextTodo.completed) {
+        return;
+      }
+
+      const nextTodos = todos.map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, editing: true };
+        }
+        return todo;
+      });
+
+      return nextTodos;
     }
 
     default: {
