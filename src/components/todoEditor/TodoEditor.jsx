@@ -1,9 +1,9 @@
 export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
-  const disabled = todo.title.length < 1 || todo.description.length < 1;
-  const editing = todo.editing;
+  // const disabled = todo.title.length < 1 || todo.description.length < 1;
+  // const editing = todo.editing;
   return (
     <form
-      onSubmit={onTodoAdd}
+      onSubmit={null}
       className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5"
     >
       <div className="flex basis-full flex-wrap gap-1">
@@ -15,8 +15,8 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
         </label>
         <input
           placeholder="Interview"
-          onChange={onTodoChange}
-          value={todo.title}
+          onChange={null}
+          value={null}
           type="text"
           name="title"
           id="title"
@@ -33,8 +33,8 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
         </label>
         <textarea
           placeholder="Prepare for the job interview tomorrow."
-          onChange={onTodoChange}
-          value={todo.description}
+          onChange={null}
+          value={null}
           name="description"
           id="description"
           cols="30"
@@ -45,10 +45,10 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
         <div className="flex basis-full flex-wrap gap-1"></div>
       </div>
       <button
-        disabled={disabled}
+        disabled={true}
         className="basis-full rounded bg-emerald-500 py-2 font-semibold uppercase text-slate-100 shadow-sm hover:bg-emerald-600 active:bg-emerald-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
       >
-        {editing ? 'save' : 'create'}
+        {true ? 'save' : 'create'}
       </button>
     </form>
   );

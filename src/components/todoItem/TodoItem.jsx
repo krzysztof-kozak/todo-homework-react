@@ -1,13 +1,19 @@
+import { useTodosDispatch } from '../../context';
+
 export default function TodoItem({
   title,
   description,
   id,
   completed,
-  onTodoCompleteToggle,
-  onTodoSelect,
   editing,
   animationDelay,
 }) {
+  const todosDispatch = useTodosDispatch();
+
+  function handleTodoComplete() {
+    todosDispatch({ type: 'todo_completed', id });
+  }
+
   const borderColor = completed ? 'border-emerald-600' : 'border-sky-600';
   const editDisabled = completed;
   const completeDisabled = editing;
@@ -38,14 +44,14 @@ export default function TodoItem({
       <div className="mt-auto flex w-full gap-6">
         <button
           disabled={editDisabled}
-          onClick={onTodoSelect.bind(null, id)}
+          onClick={null}
           className="basis-full rounded-md bg-sky-500 px-1 py-1 text-base font-medium uppercase text-white shadow-lg hover:bg-sky-600 active:bg-sky-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
           edit
         </button>
         <button
           disabled={completeDisabled}
-          onClick={onTodoCompleteToggle.bind(null, id)}
+          onClick={handleTodoComplete}
           className="basis-full rounded-md bg-sky-500 px-1 py-1 text-base font-medium uppercase text-white shadow-lg hover:bg-sky-600 active:bg-sky-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
           {completed ? 'uncomplete' : 'complete'}

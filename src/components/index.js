@@ -1,4 +1,4 @@
 export { TodoEditor } from './todoEditor';
 export { Header } from './header';
-export { TodoLayout } from './todoLayout';
+export { TodoList } from './todoList';
 export { TodoItem } from './todoItem';
