@@ -1,4 +1,4 @@
-# Todo App Homework - react
+# Todo App Homework - react (this is the version with useReducer && useContext hooks)
 
 ![preview gif](/public/demo.gif)
 
