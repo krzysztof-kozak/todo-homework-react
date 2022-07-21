@@ -8,12 +8,14 @@ export function todoEditorReducer(todo, action) {
       return action.nextTodo;
     }
 
-    case 'new_todo_submitted': {
-      return {};
-    }
-
-    case 'existing_todo_submitted': {
-      return {};
+    case 'todo_submitted': {
+      return {
+        id: null,
+        title: '',
+        description: '',
+        completed: false,
+        editing: false,
+      };
     }
 
     default: {

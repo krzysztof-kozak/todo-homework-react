@@ -1,8 +1,13 @@
-import { useSelectedTodo, useSelectedTodoDispatch } from '../../context';
+import {
+  useSelectedTodo,
+  useSelectedTodoDispatch,
+  useTodosDispatch,
+} from '../../context';
 
 export default function TodoEditor() {
   const todo = useSelectedTodo();
   const todoDispatch = useSelectedTodoDispatch();
+  const todosDispatch = useTodosDispatch();
 
   function handleTodoChange(e) {
     const key = e.target.name;
@@ -12,12 +17,31 @@ export default function TodoEditor() {
     todoDispatch({ type: 'todo_changed', nextTodo });
   }
 
+  function handleTodoSubmit(e) {
+    e.preventDefault();
+
+    todoDispatch({ type: 'todo_submitted' });
+
+    if (todo.editing) {
+      todosDispatch({
+        type: 'existing_todo_submitted',
+        nextTodo: { ...todo, editing: false },
+      });
+      return;
+    }
+
+    todosDispatch({
+      type: 'new_todo_submitted',
+      todo: { ...todo, editing: false },
+    });
+  }
+
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
 
   return (
     <form
-      onSubmit={null}
+      onSubmit={handleTodoSubmit}
       className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5"
     >
       <div className="flex basis-full flex-wrap gap-1">

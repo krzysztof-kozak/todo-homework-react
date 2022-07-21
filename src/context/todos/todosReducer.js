@@ -32,6 +32,22 @@ export function todosReducer(todos, action) {
       return nextTodos;
     }
 
+    case 'new_todo_submitted': {
+      const nextTodos = [...todos, action.todo];
+      return nextTodos;
+    }
+
+    case 'existing_todo_submitted': {
+      const nextTodos = todos.map((todo) => {
+        if (todo.id === action.nextTodo.id) {
+          return action.nextTodo;
+        }
+        return todo;
+      });
+
+      return nextTodos;
+    }
+
     default: {
       throw Error('Unknown action: ' + action.type);
     }
