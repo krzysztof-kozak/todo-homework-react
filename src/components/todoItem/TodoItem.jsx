@@ -1,4 +1,4 @@
-import { useTodosDispatch } from '../../context';
+import { useSelectedTodoDispatch, useTodosDispatch } from '../../context';
 
 export default function TodoItem({
   title,
@@ -9,6 +9,7 @@ export default function TodoItem({
   animationDelay,
 }) {
   const todosDispatch = useTodosDispatch();
+  const selectedTodoDispatch = useSelectedTodoDispatch();
 
   function handleTodoComplete() {
     todosDispatch({ type: 'todo_completed', id });
@@ -16,6 +17,10 @@ export default function TodoItem({
 
   function handleTodoSelect() {
     todosDispatch({ type: 'todo_selected', id });
+    selectedTodoDispatch({
+      type: 'todo_selected',
+      todo: { title, description, id, editing: true },
+    });
   }
 
   const borderColor = completed ? 'border-emerald-600' : 'border-sky-600';

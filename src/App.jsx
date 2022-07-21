@@ -1,5 +1,5 @@
 import { Header, TodoEditor, TodoList } from './components';
-import { TodosProvider } from './context';
+import { TodosProvider, TodoEditorProvider } from './context';
 
 export default function App() {
   // function handleTodoAdd(e) {
@@ -36,10 +36,12 @@ export default function App() {
       <div className="container mx-auto min-h-screen p-5 text-lg">
         <Header title="Todo App" />
 
-        <TodosProvider>
+        <TodoEditorProvider>
           <TodoEditor />
-          <TodoList />
-        </TodosProvider>
+          <TodosProvider>
+            <TodoList />
+          </TodosProvider>
+        </TodoEditorProvider>
       </div>
     </div>
   );

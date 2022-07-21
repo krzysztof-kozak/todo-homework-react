@@ -1,6 +1,10 @@
-export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
-  // const disabled = todo.title.length < 1 || todo.description.length < 1;
-  // const editing = todo.editing;
+import { useSelectedTodo } from '../../context';
+
+export default function TodoEditor() {
+  const todo = useSelectedTodo();
+
+  const disabled = todo.title.length < 1 || todo.description.length < 1;
+  const editing = todo.editing;
   return (
     <form
       onSubmit={null}
@@ -16,7 +20,7 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
         <input
           placeholder="Interview"
           onChange={null}
-          value={null}
+          value={todo.title}
           type="text"
           name="title"
           id="title"
@@ -34,7 +38,7 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
         <textarea
           placeholder="Prepare for the job interview tomorrow."
           onChange={null}
-          value={null}
+          value={todo.description}
           name="description"
           id="description"
           cols="30"
@@ -45,10 +49,10 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
         <div className="flex basis-full flex-wrap gap-1"></div>
       </div>
       <button
-        disabled={true}
+        disabled={disabled}
         className="basis-full rounded bg-emerald-500 py-2 font-semibold uppercase text-slate-100 shadow-sm hover:bg-emerald-600 active:bg-emerald-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
       >
-        {true ? 'save' : 'create'}
+        {editing ? 'save' : 'create'}
       </button>
     </form>
   );
