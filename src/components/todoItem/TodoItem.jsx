@@ -1,4 +1,4 @@
-import { useSelectedTodoDispatch, useTodosDispatch } from '../../context';
+import { useTodoEditorDispatch, useTodosDispatch } from '../../context';
 
 export default function TodoItem({
   title,
@@ -9,7 +9,7 @@ export default function TodoItem({
   animationDelay,
 }) {
   const todosDispatch = useTodosDispatch();
-  const selectedTodoDispatch = useSelectedTodoDispatch();
+  const todoEditorDispatch = useTodoEditorDispatch();
 
   function handleTodoComplete() {
     todosDispatch({ type: 'todo_completed', id });
@@ -18,7 +18,7 @@ export default function TodoItem({
   function handleTodoSelect() {
     todosDispatch({ type: 'todo_selected', id });
 
-    selectedTodoDispatch({
+    todoEditorDispatch({
       type: `${editing ? 'todo_unselected' : 'todo_selected'}`,
       nextTodo: { title, description, id, editing: !editing },
     });

@@ -6,6 +6,6 @@ export {
 
 export {
   default as TodoEditorProvider,
-  useSelectedTodo,
-  useSelectedTodoDispatch,
+  useTodoEditor,
+  useTodoEditorDispatch,
 } from './todoEditor/TodoEditorProvider';

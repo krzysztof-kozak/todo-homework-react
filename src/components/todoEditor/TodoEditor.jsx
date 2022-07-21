@@ -1,12 +1,12 @@
 import {
-  useSelectedTodo,
-  useSelectedTodoDispatch,
+  useTodoEditor,
+  useTodoEditorDispatch,
   useTodosDispatch,
 } from '../../context';
 
 export default function TodoEditor() {
-  const todo = useSelectedTodo();
-  const todoDispatch = useSelectedTodoDispatch();
+  const todo = useTodoEditor();
+  const todoDispatch = useTodoEditorDispatch();
   const todosDispatch = useTodosDispatch();
 
   function handleTodoChange(e) {

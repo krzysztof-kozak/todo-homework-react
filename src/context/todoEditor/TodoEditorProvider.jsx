@@ -16,11 +16,11 @@ export default function TodoEditorProvider({ children }) {
   );
 }
 
-export function useSelectedTodo() {
+export function useTodoEditor() {
   return useContext(TodoEditorContext);
 }
 
-export function useSelectedTodoDispatch() {
+export function useTodoEditorDispatch() {
   return useContext(TodoEditorDispatchContext);
 }
 
