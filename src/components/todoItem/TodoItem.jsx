@@ -19,7 +19,7 @@ export default function TodoItem({
     todosDispatch({ type: 'todo_selected', id });
     selectedTodoDispatch({
       type: 'todo_selected',
-      todo: { title, description, id, editing: true },
+      nextTodo: { title, description, id, editing: true },
     });
   }
 

@@ -1,14 +1,18 @@
 export function todoEditorReducer(todo, action) {
   switch (action.type) {
+    case 'todo_changed': {
+      return action.nextTodo;
+    }
+
     case 'todo_selected': {
-      return action.todo;
+      return action.nextTodo;
     }
 
     case 'new_todo_submitted': {
       return {};
     }
 
-    case 'existing_todo_edited': {
+    case 'existing_todo_submitted': {
       return {};
     }
 

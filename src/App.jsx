@@ -23,14 +23,6 @@ export default function App() {
   //   setSelectedTodoId(null);
   // }
 
-  // function handleTodoChange(e) {
-  //   const key = e.target.name;
-  //   const value = e.target.value;
-
-  //   const nextTodo = { ...todo, [key]: value };
-  //   setTodo(nextTodo);
-  // }
-
   return (
     <div className="bg-slate-800">
       <div className="container mx-auto min-h-screen p-5 text-lg">

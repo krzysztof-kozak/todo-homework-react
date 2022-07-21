@@ -1,10 +1,20 @@
-import { useSelectedTodo } from '../../context';
+import { useSelectedTodo, useSelectedTodoDispatch } from '../../context';
 
 export default function TodoEditor() {
   const todo = useSelectedTodo();
+  const todoDispatch = useSelectedTodoDispatch();
+
+  function handleTodoChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    const nextTodo = { ...todo, [key]: value };
+    todoDispatch({ type: 'todo_changed', nextTodo });
+  }
 
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
+
   return (
     <form
       onSubmit={null}
@@ -19,7 +29,7 @@ export default function TodoEditor() {
         </label>
         <input
           placeholder="Interview"
-          onChange={null}
+          onChange={handleTodoChange}
           value={todo.title}
           type="text"
           name="title"
@@ -37,7 +47,7 @@ export default function TodoEditor() {
         </label>
         <textarea
           placeholder="Prepare for the job interview tomorrow."
-          onChange={null}
+          onChange={handleTodoChange}
           value={todo.description}
           name="description"
           id="description"
