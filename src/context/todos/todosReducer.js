@@ -24,7 +24,7 @@ export function todosReducer(todos, action) {
 
       const nextTodos = todos.map((todo) => {
         if (todo.id === action.id) {
-          return { ...todo, editing: true };
+          return { ...todo, editing: !todo.editing };
         }
         return { ...todo, editing: false };
       });

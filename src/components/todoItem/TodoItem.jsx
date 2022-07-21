@@ -17,9 +17,10 @@ export default function TodoItem({
 
   function handleTodoSelect() {
     todosDispatch({ type: 'todo_selected', id });
+
     selectedTodoDispatch({
-      type: 'todo_selected',
-      nextTodo: { title, description, id, editing: true },
+      type: `${editing ? 'todo_unselected' : 'todo_selected'}`,
+      nextTodo: { title, description, id, editing: !editing },
     });
   }
 
@@ -56,7 +57,7 @@ export default function TodoItem({
           onClick={handleTodoSelect}
           className="basis-full rounded-md bg-sky-500 px-1 py-1 text-base font-medium uppercase text-white shadow-lg hover:bg-sky-600 active:bg-sky-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
-          edit
+          {editing ? 'cancel editing' : 'edit'}
         </button>
         <button
           disabled={completeDisabled}
