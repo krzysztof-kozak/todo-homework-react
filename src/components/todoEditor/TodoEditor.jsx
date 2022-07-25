@@ -1,4 +1,8 @@
-export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
+import { useOutletContext } from 'react-router-dom';
+
+export default function TodoEditor() {
+  const [todo, onTodoAdd, onTodoChange] = useOutletContext();
+
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
   return (
