@@ -43,7 +43,7 @@ export default function TodoItem({
           onClick={onTodoSelect.bind(null, id)}
           className="basis-full rounded-md bg-sky-500 py-1 text-base font-medium uppercase text-white shadow-lg disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
-          <Link to={id}>edit</Link>
+          <Link to={`/edit/${id}`}>edit</Link>
         </button>
         <button
           disabled={completeDisabled}

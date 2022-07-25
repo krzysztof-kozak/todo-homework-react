@@ -12,9 +12,9 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<TodoEditor />} />
-          <Route path=":id" element={<TodoEditor />} />
+          <Route path="*" element={<NoMatch />} />
+          <Route path="/edit/:id" element={<TodoEditor />} />
         </Route>
-        <Route path="*" element={<NoMatch />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,

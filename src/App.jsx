@@ -53,6 +53,7 @@ export default function App() {
     setTodos(nextTodos);
     setTodo(defaultTodo);
     setSelectedTodoId(null);
+    navigate('/');
   }
 
   function handleTodoChange(e) {
@@ -79,9 +80,6 @@ export default function App() {
     setTodo({ ...nextTodo, editing: true });
     setTodos(nextTodos);
     setSelectedTodoId(id);
-
-    /* Sometimes when I click the edit button, the URL does not change. Not really sure why that is, but explicitly navigating gets rid of that bug */
-    navigate(`/${id}`);
   }
 
   function handleTodoCompleteToggle(id) {
