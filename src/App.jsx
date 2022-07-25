@@ -71,7 +71,7 @@ export default function App() {
       if (todo.id === id) {
         return { ...todo, editing: true };
       }
-      return todo;
+      return { ...todo, editing: false };
     });
 
     setTodo({ ...nextTodo, editing: true });
