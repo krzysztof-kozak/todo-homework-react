@@ -1,7 +1,14 @@
-import { useOutletContext } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
+
+import { NoMatch } from '../index';
 
 export default function TodoEditor() {
   const [todo, onTodoAdd, onTodoChange] = useOutletContext();
+  const { id } = useParams();
+
+  if (todo.id !== id) {
+    return <NoMatch />;
+  }
 
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
