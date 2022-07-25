@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Header, TodoItem, TodoLayout } from './components';
 
@@ -33,6 +33,14 @@ export default function App() {
   const [selectedTodoId, setSelectedTodoId] = useState(null);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!selectedTodoId) {
+      return;
+    }
+
+    navigate(`/edit/${selectedTodoId}`);
+  }, [selectedTodoId, navigate]);
 
   function handleTodoAdd(e) {
     e.preventDefault();
