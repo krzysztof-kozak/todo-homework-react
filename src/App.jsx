@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import { Header, TodoItem, TodoLayout } from './components';
 
 export default function App() {
@@ -31,6 +31,8 @@ export default function App() {
   const [todos, setTodos] = useState(defaultTodos);
   const [todo, setTodo] = useState(defaultTodo);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
+
+  const navigate = useNavigate();
 
   function handleTodoAdd(e) {
     e.preventDefault();
@@ -77,6 +79,9 @@ export default function App() {
     setTodo({ ...nextTodo, editing: true });
     setTodos(nextTodos);
     setSelectedTodoId(id);
+
+    /* Sometimes when I click the edit button, the URL does not change. Not really sure why that is, but explicitly navigating gets rid of that bug */
+    navigate(`/${id}`);
   }
 
   function handleTodoCompleteToggle(id) {
