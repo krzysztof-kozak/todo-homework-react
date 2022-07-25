@@ -12,6 +12,7 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<TodoEditor />} />
+          <Route path=":id" element={<TodoEditor />} />
         </Route>
       </Routes>
     </BrowserRouter>
