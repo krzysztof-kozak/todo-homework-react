@@ -1,7 +1,18 @@
-import { useOutletContext } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 
 export default function TodoEditor() {
   const [todo, onTodoAdd, onTodoChange] = useOutletContext();
+  const { id } = useParams();
+  const navigate = useNavigate();
+
+  const hasValidIdParam = id && todo.id === id;
+
+  useEffect(() => {
+    if (!hasValidIdParam) {
+      navigate('/');
+    }
+  }, [hasValidIdParam, navigate]);
 
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
