@@ -1,8 +1,9 @@
-import { useTodos } from '../../context';
+import { useSelector } from 'react-redux';
+import { selectTodos } from '../todoItem/todosSlice';
 import { TodoItem } from '../index';
 
 export default function TodoList() {
-  const todos = useTodos();
+  const todos = useSelector(selectTodos);
   return (
     <div className="mt-16 grid grid-cols-ram place-content-center gap-8">
       {todos.map((todo, index) => {
