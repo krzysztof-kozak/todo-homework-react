@@ -1,6 +1,6 @@
 import { useTodoEditorDispatch, useTodosDispatch } from '../../context';
 import { useDispatch } from 'react-redux';
-import { toggleCompleted } from './todosSlice';
+import { toggleCompleted, toggleSelected } from './todosSlice';
 
 export default function TodoItem({
   title,
@@ -17,11 +17,10 @@ export default function TodoItem({
 
   function handleTodoComplete() {
     dispatch(toggleCompleted(id));
-    todosDispatch({ type: 'todo_completed', id });
   }
 
   function handleTodoSelect() {
-    todosDispatch({ type: 'todo_selected', id });
+    dispatch(toggleSelected(id));
 
     todoEditorDispatch({
       type: `${editing ? 'todo_unselected' : 'todo_selected'}`,

@@ -35,12 +35,40 @@ const todosSlice = createSlice({
 
       selectedTodo.completed = !selectedTodo.completed;
     },
-    selected: () => null,
-    submittedNew: () => null,
-    submittedExisting: () => null,
+    toggleSelected: (todos, action) => {
+      const selectedTodo = todos.find((todo) => todo.id === action.payload);
+
+      if (selectedTodo.completed) {
+        return;
+      }
+
+      const restOfTodos = todos.filter((todo) => todo.id !== action.payload);
+      selectedTodo.editing = !selectedTodo.editing;
+
+      restOfTodos.forEach((todo) => {
+        if (todo.editing) {
+          todo.editing = false;
+        }
+      });
+    },
+    submittedNew: (todos, action) => {
+      todos.push(action.payload);
+    },
+    submittedExisting: (todos, action) => {
+      const editedTodo = todos.find((todo) => (todo.id = action.payload.id));
+
+      const nextTodos = todos.map((todo) => {
+        if (todo.id === action.nextTodo.id) {
+          return action.nextTodo;
+        }
+        return todo;
+      });
+
+      return nextTodos;
+    },
   },
 });
 
-export const { toggleCompleted } = todosSlice.actions;
+export const { toggleCompleted, toggleSelected } = todosSlice.actions;
 export const todosReducer = todosSlice.reducer;
 export const selectTodos = (state) => state.todos;
