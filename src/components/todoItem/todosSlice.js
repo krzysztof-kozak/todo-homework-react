@@ -26,8 +26,8 @@ const todosSlice = createSlice({
     },
   ],
   reducers: {
-    toggleCompleted: (todos, payload) => {
-      const selectedTodo = todos.find((todo) => todo.id === payload.id);
+    toggleCompleted: (todos, action) => {
+      const selectedTodo = todos.find((todo) => todo.id === action.payload);
 
       if (selectedTodo.editing) {
         return;
