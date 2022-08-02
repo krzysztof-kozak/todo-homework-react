@@ -41,7 +41,7 @@ export default function TodoItem({
           onClick={onTodoSelect.bind(null, id)}
           className="basis-full rounded-md bg-sky-500 py-1 text-base font-medium uppercase text-white shadow-lg disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
-          edit
+          {editing ? 'cancel editing' : 'edit'}
         </button>
         <button
           disabled={completeDisabled}

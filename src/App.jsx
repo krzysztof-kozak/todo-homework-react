@@ -68,12 +68,17 @@ export default function App() {
 
     const nextTodos = todos.map((todo) => {
       if (todo.id === id) {
-        return { ...todo, editing: true };
+        return { ...todo, editing: !todo.editing };
       }
-      return todo;
+      return { ...todo, editing: false };
     });
 
-    setTodo({ ...nextTodo, editing: true });
+    if (nextTodo.editing) {
+      setTodo(defaultTodo);
+    } else {
+      setTodo({ ...nextTodo, editing: true });
+    }
+
     setTodos(nextTodos);
     setSelectedTodoId(id);
   }
