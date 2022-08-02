@@ -55,20 +55,12 @@ const todosSlice = createSlice({
       todos.push(action.payload);
     },
     submittedExisting: (todos, action) => {
-      const editedTodo = todos.find((todo) => (todo.id = action.payload.id));
-
-      const nextTodos = todos.map((todo) => {
-        if (todo.id === action.nextTodo.id) {
-          return action.nextTodo;
-        }
-        return todo;
-      });
-
-      return nextTodos;
+      let editedTodoIndex = todos.findIndex((todo) => todo.id === action.payload.id);
+      todos[editedTodoIndex] = action.payload;
     },
   },
 });
 
-export const { toggleCompleted, toggleSelected } = todosSlice.actions;
+export const { toggleCompleted, toggleSelected, submittedNew, submittedExisting } = todosSlice.actions;
 export const todosReducer = todosSlice.reducer;
 export const selectTodos = (state) => state.todos;

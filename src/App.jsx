@@ -1,5 +1,4 @@
 import { Header, TodoEditor, TodoList } from './components';
-import { TodosProvider, TodoEditorProvider } from './context';
 
 export default function App() {
   return (
@@ -7,12 +6,8 @@ export default function App() {
       <div className="container mx-auto min-h-screen p-5 text-lg">
         <Header title="Todo App" />
 
-        <TodoEditorProvider>
-          <TodosProvider>
-            <TodoEditor />
-            <TodoList />
-          </TodosProvider>
-        </TodoEditorProvider>
+        <TodoEditor />
+        <TodoList />
       </div>
     </div>
   );

@@ -1,54 +1,39 @@
-import {
-  useTodoEditor,
-  useTodoEditorDispatch,
-  useTodosDispatch,
-} from '../../context';
+import { useDispatch, useSelector } from 'react-redux';
+import { changed, submitted, selectTodoEditor } from './todoEditorSlice';
+import { submittedExisting, submittedNew } from '../todoItem/todosSlice';
 
 export default function TodoEditor() {
-  const todo = useTodoEditor();
-  const todoDispatch = useTodoEditorDispatch();
-  const todosDispatch = useTodosDispatch();
+  const todo = useSelector(selectTodoEditor);
+  const dispatch = useDispatch();
 
   function handleTodoChange(e) {
     const key = e.target.name;
     const value = e.target.value;
 
     const nextTodo = { ...todo, [key]: value };
-    todoDispatch({ type: 'todo_changed', nextTodo });
+    dispatch(changed(nextTodo));
   }
 
   function handleTodoSubmit(e) {
     e.preventDefault();
 
-    todoDispatch({ type: 'todo_submitted' });
+    dispatch(submitted());
 
     if (todo.editing) {
-      todosDispatch({
-        type: 'existing_todo_submitted',
-        nextTodo: { ...todo, editing: false },
-      });
+      dispatch(submittedExisting({ ...todo, editing: false }));
       return;
     }
 
-    todosDispatch({
-      type: 'new_todo_submitted',
-      todo: { ...todo, editing: false },
-    });
+    dispatch(submittedNew({ ...todo, editing: false }));
   }
 
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
 
   return (
-    <form
-      onSubmit={handleTodoSubmit}
-      className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5"
-    >
+    <form onSubmit={handleTodoSubmit} className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5">
       <div className="flex basis-full flex-wrap gap-1">
-        <label
-          htmlFor="title"
-          className="basis-full font-semibold text-sky-400"
-        >
+        <label htmlFor="title" className="basis-full font-semibold text-sky-400">
           title
         </label>
         <input
@@ -63,10 +48,7 @@ export default function TodoEditor() {
       </div>
 
       <div className="flex basis-full flex-wrap gap-1">
-        <label
-          htmlFor="description"
-          className="basis-full font-semibold text-sky-400"
-        >
+        <label htmlFor="description" className="basis-full font-semibold text-sky-400">
           description
         </label>
         <textarea

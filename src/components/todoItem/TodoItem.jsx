@@ -1,18 +1,8 @@
-import { useTodoEditorDispatch, useTodosDispatch } from '../../context';
 import { useDispatch } from 'react-redux';
 import { toggleCompleted, toggleSelected } from './todosSlice';
+import { selected, unselected } from '../todoEditor/todoEditorSlice';
 
-export default function TodoItem({
-  title,
-  description,
-  id,
-  completed,
-  editing,
-  animationDelay,
-}) {
-  const todosDispatch = useTodosDispatch();
-  const todoEditorDispatch = useTodoEditorDispatch();
-
+export default function TodoItem({ title, description, id, completed, editing, animationDelay }) {
   const dispatch = useDispatch();
 
   function handleTodoComplete() {
@@ -21,11 +11,7 @@ export default function TodoItem({
 
   function handleTodoSelect() {
     dispatch(toggleSelected(id));
-
-    todoEditorDispatch({
-      type: `${editing ? 'todo_unselected' : 'todo_selected'}`,
-      nextTodo: { title, description, id, editing: !editing },
-    });
+    dispatch(editing ? unselected() : selected({ title, description, id, editing: !editing }));
   }
 
   const borderColor = completed ? 'border-emerald-600' : 'border-sky-600';
