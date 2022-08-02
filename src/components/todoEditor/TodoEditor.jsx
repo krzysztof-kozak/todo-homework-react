@@ -2,9 +2,15 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
   const disabled = todo.title.length < 1 || todo.description.length < 1;
   const editing = todo.editing;
   return (
-    <form onSubmit={onTodoAdd} className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5">
+    <form
+      onSubmit={onTodoAdd}
+      className="mx-auto mt-20 flex max-w-sm flex-wrap space-y-5"
+    >
       <div className="flex basis-full flex-wrap gap-1">
-        <label htmlFor="title" className="basis-full font-semibold text-sky-400">
+        <label
+          htmlFor="title"
+          className="basis-full font-semibold text-sky-400"
+        >
           title
         </label>
         <input
@@ -19,7 +25,10 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
       </div>
 
       <div className="flex basis-full flex-wrap gap-1">
-        <label htmlFor="description" className="basis-full font-semibold text-sky-400">
+        <label
+          htmlFor="description"
+          className="basis-full font-semibold text-sky-400"
+        >
           description
         </label>
         <textarea
@@ -37,7 +46,7 @@ export default function TodoEditor({ todo, onTodoAdd, onTodoChange }) {
       </div>
       <button
         disabled={disabled}
-        className="basis-full rounded bg-emerald-500 py-2 font-semibold uppercase text-slate-100 shadow-sm disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
+        className="basis-full rounded bg-emerald-500 py-2 font-semibold uppercase text-slate-100 shadow-sm hover:bg-emerald-600 active:bg-emerald-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
       >
         {editing ? 'save' : 'create'}
       </button>

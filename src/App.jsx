@@ -86,7 +86,6 @@ export default function App() {
   function handleTodoCompleteToggle(id) {
     const selectedTodo = todos.find((todo) => todo.id === id);
     if (selectedTodo.editing) {
-      debugger;
       return;
     }
 
@@ -104,7 +103,11 @@ export default function App() {
     <div className="bg-slate-800">
       <div className="container mx-auto min-h-screen p-5 text-lg">
         <Header title="Todo App" />
-        <TodoEditor todo={todo} onTodoAdd={handleTodoAdd} onTodoChange={handleTodoChange} />
+        <TodoEditor
+          todo={todo}
+          onTodoAdd={handleTodoAdd}
+          onTodoChange={handleTodoChange}
+        />
 
         <TodoLayout>
           {todos.map((todo, index) => {
@@ -113,7 +116,7 @@ export default function App() {
             with tailwindcss & react when it comes to animation delay...
 
             for example, the following doesn't work:
-            let animationDelay = `[animation-delay${index * 500}ms]`
+            let animationDelay = `[animation-delay:${index * 500}ms]`
             */
             let animationDelay = '';
             if (index === 0) {

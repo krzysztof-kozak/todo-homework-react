@@ -39,14 +39,14 @@ export default function TodoItem({
         <button
           disabled={editDisabled}
           onClick={onTodoSelect.bind(null, id)}
-          className="basis-full rounded-md bg-sky-500 py-1 text-base font-medium uppercase text-white shadow-lg disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
+          className="basis-full rounded-md bg-sky-500 px-1 py-1 text-base font-medium uppercase text-white shadow-lg hover:bg-sky-600 active:bg-sky-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
           {editing ? 'cancel editing' : 'edit'}
         </button>
         <button
           disabled={completeDisabled}
           onClick={onTodoCompleteToggle.bind(null, id)}
-          className="basis-full rounded-md bg-sky-500 text-base font-medium uppercase text-white shadow-lg disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
+          className="basis-full rounded-md bg-sky-500 px-1 py-1 text-base font-medium uppercase text-white shadow-lg hover:bg-sky-600 active:bg-sky-700 active:shadow-inner active:shadow-slate-700 disabled:cursor-not-allowed disabled:bg-slate-500 disabled:text-slate-300"
         >
           {completed ? 'uncomplete' : 'complete'}
         </button>
