@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/todo-homework-react/static/css/main.1f6a1b7c.css",
-    "main.js": "/todo-homework-react/static/js/main.216d1a22.js",
+    "main.js": "/todo-homework-react/static/js/main.5b84e7b4.js",
     "index.html": "/todo-homework-react/index.html",
     "main.1f6a1b7c.css.map": "/todo-homework-react/static/css/main.1f6a1b7c.css.map",
-    "main.216d1a22.js.map": "/todo-homework-react/static/js/main.216d1a22.js.map"
+    "main.5b84e7b4.js.map": "/todo-homework-react/static/js/main.5b84e7b4.js.map"
   },
   "entrypoints": [
     "static/css/main.1f6a1b7c.css",
-    "static/js/main.216d1a22.js"
+    "static/js/main.5b84e7b4.js"
   ]
 }
